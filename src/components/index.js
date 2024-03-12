@@ -27,11 +27,11 @@ const profileDescription = document.querySelector(".profile__description");
 const editProfileForm = document.forms["edit-profile"];
 const addCardForm = document.forms["new-place"];
 
-const inputProfileName = document.forms["edit-profile"].name;
-const inputProfileDescription = document.forms["edit-profile"].description;
+const inputProfileName = editProfileForm.name;
+const inputProfileDescription = editProfileForm.description;
 
-const inputNameNewCard = document.forms["new-place"]["place-name"];
-const inputUrlNewCard = document.forms["new-place"].link;
+const inputNameNewCard = addCardForm["place-name"];
+const inputUrlNewCard = addCardForm.link;
 
 function addCard(cardElement) {
   cardsList.prepend(cardElement);
@@ -42,8 +42,8 @@ initialCards.forEach(function (element) {
   addCard(cardElement);
 });
 
-addCardForm.addEventListener("submit", cardFormSubmit);
-editProfileForm.addEventListener("submit", profileFormSubmit);
+addCardForm.addEventListener("submit", handleCardFormSubmit);
+editProfileForm.addEventListener("submit", handleProfileFormSubmit);
 
 editProfileButton.addEventListener("click", function () {
   inputProfileName.value = profileTitle.textContent;
@@ -62,14 +62,14 @@ function viewFullImage(evt) {
   popupCaption.textContent = evt.target.closest(".card__image").alt;
 }
 
-function profileFormSubmit(evt) {
+function handleProfileFormSubmit(evt) {
   evt.preventDefault();
   profileTitle.textContent = inputProfileName.value;
   profileDescription.textContent = inputProfileDescription.value;
   closePopup(popupEdit);
 }
 
-function cardFormSubmit(evt) {
+function handleCardFormSubmit(evt) {
   evt.preventDefault();
   const item = {};
   item.name = inputNameNewCard.value;

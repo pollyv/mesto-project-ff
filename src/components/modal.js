@@ -1,7 +1,5 @@
-export { openPopup, closePopup, closePopupButton, closePopupByOverlay };
-
 function openPopup(popup) {
-  popup.classList.add("popup_is-opened");
+  popup.classList.add("popup_is-opened", "popup_is-animated");
   document.addEventListener("keydown", closePopupByEscape);
 }
 
@@ -25,8 +23,9 @@ function closePopupByEscape(evt) {
 }
 
 function closePopupByOverlay(evt) {
-  const popup = document.querySelector(".popup_is-opened");
-  if (popup === evt.target) {
-    closePopup(popup);
+  if (evt.target.classList.contains("popup_is-opened")) {
+    closePopup(evt.target);
   }
 }
+
+export { openPopup, closePopup, closePopupButton, closePopupByOverlay };
