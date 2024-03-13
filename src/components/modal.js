@@ -1,5 +1,8 @@
 function openPopup(popup) {
-  popup.classList.add("popup_is-opened", "popup_is-animated");
+  popup.classList.add("popup_is-animated");
+  setTimeout(() => {
+    popup.classList.add("popup_is-opened");
+  }, 1);
   document.addEventListener("keydown", closePopupByEscape);
 }
 
@@ -9,8 +12,9 @@ function closePopup(popup) {
 }
 
 function closePopupButton(evt) {
-  if (evt.target === evt.target.closest(".popup__close")) {
-    const popup = document.querySelector(".popup_is-opened");
+  const closeIcon = evt.target.closest(".popup__close");
+  if (evt.target === closeIcon) {
+    const popup = closeIcon.closest(".popup_is-opened");
     closePopup(popup);
   }
 }
