@@ -1,0 +1,10 @@
+.card__like-sum {
+  margin: 0 auto;
+  color: #000000;
+  font-family: "Inter";
+  font-weight: 400;
+  font-size: 13px;
+  font-style: normal;
+  line-height: 16px;
+  text-align: center;
+}

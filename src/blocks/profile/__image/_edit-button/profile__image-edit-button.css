@@ -1,0 +1,20 @@
+.profile__image-edit-button {
+  position: absolute;
+  border: none;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  opacity: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  background-image: url(/src/images/edit-user-avatar.png);
+  background-repeat: no-repeat;
+  background-position: center center;
+  transition: 0.3s;
+  cursor: pointer;
+  block-size: 100%;
+  inline-size: 100%;
+}
+
+.profile__image-edit-button:hover {
+  opacity: 1;
+}
