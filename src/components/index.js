@@ -10,9 +10,11 @@ import {
   getServerCards,
 } from "./api.js";
 
+// переименованы переменные
+
 const cardsList = document.querySelector(".places__list");
 const buttonOpenPopupProfile = document.querySelector(".profile__edit-button");
-const addCardButton = document.querySelector(".profile__add-button");
+const buttonAddCard = document.querySelector(".profile__add-button"); // тут
 
 const popups = document.querySelectorAll(".popup");
 const popupEdit = document.querySelector(".popup_type_edit");
@@ -25,19 +27,19 @@ const profileUserTitle = document.querySelector(".profile__title");
 const profileUserDescription = document.querySelector(".profile__description");
 const profileUserImage = document.querySelector(".profile__image");
 
-const editProfileForm = document.forms["edit-profile"];
-const addCardForm = document.forms["new-place"];
+const formEditProfile = document.forms["edit-profile"]; //тут
+const formAddCard = document.forms["new-place"]; // тут
 
-const editAvatarForm = document.forms["edit-avatar"];
-const inputAvatarFormLink = document.forms["edit-avatar"]["link-avatar"];
+const formEditAvatar = document.forms["edit-avatar"]; // здесь
+const avatarInputFormLink = document.forms["edit-avatar"]["link-avatar"]; // вот здесь
 
-const inputProfileName = editProfileForm.name;
-const inputProfileDescription = editProfileForm.description;
+const profileNameInput = formEditProfile.name; // тут тоже
+const profileDescriptionInput = formEditProfile.description; // и здесь
 
-const inputNameNewCard = addCardForm["place-name"];
-const inputUrlNewCard = addCardForm.link;
+const newCardInputName = formAddCard["place-name"]; // эта тоже
+const newCardInputUrl = formAddCard.link; // и вот эта
 
-const editAvatarButton = document.querySelector(".profile__image-edit-button");
+const buttonEditAvatar = document.querySelector(".profile__image-edit-button");
 const popupEditAvatar = document.querySelector(".popup_type_edit-avatar");
 
 const validationConfig = {
@@ -53,26 +55,26 @@ function addCard(cardElement) {
   cardsList.prepend(cardElement);
 }
 
-addCardForm.addEventListener("submit", handleCardFormSubmit);
+formAddCard.addEventListener("submit", handleCardFormSubmit);
 
-editProfileForm.addEventListener("submit", handleProfileFormSubmit);
+formEditProfile.addEventListener("submit", handleProfileFormSubmit);
 
 buttonOpenPopupProfile.addEventListener("click", function () {
-  inputProfileName.value = profileUserTitle.textContent;
-  inputProfileDescription.value = profileUserDescription.textContent;
-  clearValidation(editProfileForm, validationConfig);
+  profileNameInput.value = profileUserTitle.textContent;
+  profileDescriptionInput.value = profileUserDescription.textContent;
+  clearValidation(formEditProfile, validationConfig);
   openPopup(popupEdit);
 });
 
-addCardButton.addEventListener("click", function () {
+buttonAddCard.addEventListener("click", function () {
   openPopup(popupAddCard);
 });
 
-editAvatarButton.addEventListener("click", function () {
+buttonEditAvatar.addEventListener("click", function () {
   openPopup(popupEditAvatar);
 });
 
-editAvatarForm.addEventListener("submit", editAvatarFormSubmit);
+formEditAvatar.addEventListener("submit", editAvatarFormSubmit);
 
 function viewFullImage(evt) {
   openPopup(popupImage);
@@ -85,11 +87,11 @@ function handleProfileFormSubmit(evt) {
   evt.preventDefault();
   const button = evt.target.querySelector(".popup__button");
   button.textContent = "Сохранение...";
-  patchServerProfile(inputProfileName, inputProfileDescription)
+  patchServerProfile(profileNameInput, profileDescriptionInput)
     .then(() => {
-      profileUserTitle.textContent = inputProfileName.value;
-      profileUserDescription.textContent = inputProfileDescription.value;
-      clearValidation(editProfileForm, validationConfig);
+      profileUserTitle.textContent = profileNameInput.value;
+      profileUserDescription.textContent = profileDescriptionInput.value;
+      clearValidation(formEditProfile, validationConfig);
       closePopup(popupEdit);
     })
     .catch((err) => {
@@ -104,8 +106,8 @@ function handleCardFormSubmit(evt) {
   evt.preventDefault();
   const item = {};
   item.likes = new Array();
-  item.name = inputNameNewCard.value;
-  item.link = inputUrlNewCard.value;
+  item.name = newCardInputName.value;
+  item.link = newCardInputUrl.value;
 
   const button = evt.target.querySelector(".popup__button");
   button.textContent = "Сохранение...";
@@ -120,8 +122,8 @@ function handleCardFormSubmit(evt) {
         viewFullImage
       );
       addCard(cardElement);
-      addCardForm.reset();
-      clearValidation(addCardForm, validationConfig);
+      formAddCard.reset();
+      clearValidation(formAddCard, validationConfig);
       closePopup(popupAddCard);
     })
     .catch((err) => {
@@ -138,12 +140,12 @@ function editAvatarFormSubmit(evt) {
   const button = evt.target.querySelector(".popup__button");
   button.textContent = "Сохранение...";
 
-  patchServerAvatar(inputAvatarFormLink.value)
+  patchServerAvatar(avatarInputFormLink.value)
     .then(() => {
       profileUserImage.style.backgroundImage =
-        "url(" + inputAvatarFormLink.value + ")";
-      editAvatarForm.reset();
-      clearValidation(editAvatarForm, validationConfig);
+        "url(" + avatarInputFormLink.value + ")";
+      formEditAvatar.reset();
+      clearValidation(formEditAvatar, validationConfig);
       closePopup(popupEditAvatar);
     })
     .catch((err) => {
@@ -166,6 +168,8 @@ popups.forEach((popup) => {
 });
 
 enableValidation(validationConfig);
+
+// удален fetchProfile с первой итерации
 
 Promise.all([getServerProfile(), getServerCards()])
   .then((results) => {

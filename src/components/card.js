@@ -1,3 +1,4 @@
+//импорт элемента профиля с предыдущей итерации удален
 import { deleteServerCard, addServerLike, deleteServerLike } from "./api.js";
 
 const cardTemplate = document.querySelector("#card-template").content;
@@ -37,6 +38,7 @@ function createCard(
   return cardElement;
 }
 
+// при успехе запроса вызывается метод удаления (с первой итерации)
 function deleteCard(button) {
   const card = button.closest(".card");
   deleteServerCard(card)
@@ -48,6 +50,7 @@ function deleteCard(button) {
     });
 }
 
+// при успехе запроса вызывается метод удаления (с первой итерации)
 function addLike(evt) {
   const likeButton = evt.target;
   const card = likeButton.closest(".card");

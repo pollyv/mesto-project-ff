@@ -29,13 +29,13 @@ function getServerCards() {
   });
 }
 
-function patchServerProfile(inputProfileName, inputProfileDescription) {
+function patchServerProfile(profileNameInput, profileDescriptionInput) {
   return request(config["baseUrl"] + "/users/me", {
     method: "PATCH",
     headers: config["headers"],
     body: JSON.stringify({
-      name: inputProfileName.value,
-      about: inputProfileDescription.value,
+      name: profileNameInput.value,
+      about: profileDescriptionInput.value,
     }),
   });
 }
