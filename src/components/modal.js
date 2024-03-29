@@ -1,5 +1,6 @@
 function openPopup(popup) {
-  //popup.classList.add("popup_is-animated");
+  // добавила этот класс в разметку, тут закомментировала
+  // popup.classList.add("popup_is-animated");
   setTimeout(() => {
     popup.classList.add("popup_is-opened");
   }, 1);

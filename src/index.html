@@ -136,10 +136,13 @@
               name="link-avatar"
               id="popup__input_type_url-avatar"
               class="popup__input popup__input_type_url-avatar popup__input-url-image"
-              pattern="^https?:\S+.(?:jpe?g|png|gif|svg|bmp|tiff|avif|webp)$"
               placeholder="Ссылка на изображение"
-              required
+              <!--
+              Убрала
+              паттерн
+              --
             />
+            required />
             <span
               class="popup__input_type_url-avatar-error popup__input-error"
             ></span>
