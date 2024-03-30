@@ -47,8 +47,8 @@ const validationConfig = {
   inputSelector: ".popup__input",
   submitButtonSelector: ".popup__button",
   inactiveButtonClass: "popup__button-inactive",
-  inputErrorClass: "popup__input-type-error",
-  errorClass: "popup__input-error-active",
+  inputErrorClass: "popup__input_type_error",
+  errorClass: "popup__input-error_active",
 };
 
 function addCard(cardElement) {

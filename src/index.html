@@ -35,7 +35,7 @@
         </section>
       </main>
       <footer class="footer page__section">
-        <p class="footer__copyright">© 2021 Mesto Russia</p>
+        <p class="footer__copyright">© 2024 Mesto Russia</p>
       </footer>
       <div class="popup popup_type_edit popup_is-animated">
         <div class="popup__content">
@@ -51,6 +51,7 @@
                 placeholder="Имя"
                 maxlength="40"
                 pattern="^[A-Za-zА-Яа-яЁё\- ]+$"
+                data-error="Разрешены только латинские, кириллические буквы, знаки дефиса и пробелы"
                 required
               />
               <span
@@ -66,6 +67,7 @@
                 placeholder="Профессия"
                 maxlength="200"
                 pattern="^[A-Za-zА-Яа-яЁё\- ]+$"
+                data-error="Разрешены только латинские, кириллические буквы, знаки дефиса и пробелы"
                 required
               />
               <span
@@ -92,6 +94,7 @@
                 placeholder="Название"
                 maxlength="30"
                 pattern="^[A-Za-zА-Яа-яЁё\- ]+$"
+                data-error="Разрешены только латинские, кириллические буквы, знаки дефиса и пробелы"
                 required
               />
               <span
@@ -103,8 +106,9 @@
                 type="url"
                 name="link"
                 id="popup__input_type_url"
-                class="popup__input popup__input_type_url popup__input-url-image"
+                class="popup__input popup__input_type_url"
                 placeholder="Ссылка на изображение"
+                data-error="Вставьте ссылку на изображение"
                 required
               />
               <span
@@ -135,14 +139,11 @@
               type="url"
               name="link-avatar"
               id="popup__input_type_url-avatar"
-              class="popup__input popup__input_type_url-avatar popup__input-url-image"
+              class="popup__input popup__input_type_url-avatar"
               placeholder="Ссылка на изображение"
-              <!--
-              Убрала
-              паттерн
-              --
+              data-error="Вставьте ссылку на изображение"
+              required
             />
-            required />
             <span
               class="popup__input_type_url-avatar-error popup__input-error"
             ></span>
